@@ -4,16 +4,29 @@ import { useState, useEffect } from "react";
 
 const Transactions = () => {
   const [transactions, setTransactions] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getBlockWithTransactions = async () => {
-    const response = await alchemy.core.getBlockWithTransactions();
-    setTransactions(response.transactions);
-    // console.log(response.transactions);
+    try {
+      const response = await alchemy.core.getBlockWithTransactions();
+      setTransactions(response.transactions);
+      // console.log(response.transactions);
+      setLoading(false);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   useEffect(() => {
     getBlockWithTransactions();
   }, []);
+
+  if (loading)
+    return (
+      <div className="">
+        <p>Loading...</p>
+      </div>
+    );
 
   return (
     <div className="flex align-center justify-center flex-col">
