@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Transactions from "./components/Transactions";
 import Blocks from "./components/Blocks";
 import InputAddress from "./components/InputAddress";
+import Layout from "./components/Layout";
 
 import { useContext } from "react";
 import { ThemeContext } from "./context/theme";
@@ -27,11 +28,7 @@ export const alchemy = new Alchemy(settings);
 function App() {
   const [blockNumber, setBlockNumber] = useState();
 
-  const { lightTheme, darkTheme, state } = useContext(ThemeContext);
-
-  const onClick = () => {
-    state.darkMode ? lightTheme() : darkTheme();
-  };
+  const { state } = useContext(ThemeContext);
 
   const getBlockNumber = async () => {
     setBlockNumber(await alchemy.core.getBlockNumber());
@@ -47,12 +44,13 @@ function App() {
 
   return (
     <div className={`App ${state.darkMode ? "dark-theme" : "light-theme"}`}>
-      <button onClick={onClick}>Toggle theme</button>
-      <h1>Current theme: {state.darkMode ? "dark" : "light"}</h1>
-      <h1>Block Number: {blockNumber}</h1>
-      <Blocks />
-      <InputAddress />
-      <Transactions />
+      <Layout>
+        <h1>Current theme: {state.darkMode ? "dark" : "light"}</h1>
+        <h1>Block Number: {blockNumber}</h1>
+        <Blocks />
+        <InputAddress />
+        <Transactions />
+      </Layout>
     </div>
   );
 }
