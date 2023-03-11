@@ -1,5 +1,11 @@
 import { Alchemy, Network } from "alchemy-sdk";
 import { useEffect, useState } from "react";
+import Transactions from "./components/Transactions";
+import Blocks from "./components/Blocks";
+import InputAddress from "./components/InputAddress";
+
+import { useContext } from "react";
+import { ThemeContext } from "./context/theme";
 
 import "./App.css";
 
@@ -16,15 +22,15 @@ const settings = {
 //
 // You can read more about the packages here:
 //   https://docs.alchemy.com/reference/alchemy-sdk-api-surface-overview#api-surface
-const alchemy = new Alchemy(settings);
+export const alchemy = new Alchemy(settings);
 
 function App() {
   const [blockNumber, setBlockNumber] = useState();
-  const [transactions, setTransactions] = useState();
 
-  const getBlockWithTransactions = async () => {
-    const response = await alchemy.core.getBlockWithTransactions();
-    setTransactions(response.transactions);
+  const { lightTheme, darkTheme, state } = useContext(ThemeContext);
+
+  const onClick = () => {
+    state.darkMode ? lightTheme() : darkTheme();
   };
 
   const getBlockNumber = async () => {
@@ -34,22 +40,19 @@ function App() {
   useEffect(() => {
     try {
       getBlockNumber();
-      getBlockWithTransactions();
     } catch (e) {
       console.log(e);
     }
   }, []);
 
-  console.log(transactions, "transactions");
-
   return (
-    <div className="App">
+    <div className={`App ${state.darkMode ? "dark-theme" : "light-theme"}`}>
+      <button onClick={onClick}>Toggle theme</button>
+      <h1>Current theme: {state.darkMode ? "dark" : "light"}</h1>
       <h1>Block Number: {blockNumber}</h1>
-      <ul>
-        {transactions.length > 0
-          ? transactions.map((tx) => <li key={tx.blockNumber}>{tx.hash}</li>)
-          : null}
-      </ul>
+      <Blocks />
+      <InputAddress />
+      <Transactions />
     </div>
   );
 }
