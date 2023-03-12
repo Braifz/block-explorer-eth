@@ -1,4 +1,4 @@
-import { alchemy } from "../App";
+import { alchemy } from "../config/alchemyConfig";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
