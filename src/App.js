@@ -29,15 +29,15 @@ function App() {
   }, []);
 
   return (
-    <div className={`App ${state.darkMode ? "dark-theme" : "light-theme"}`}>
-      <Layout>
+    <Layout>
+      <div className={`App ${state.darkMode ? "dark-theme" : "light-theme"}`}>
         <h1>Current theme: {state.darkMode ? "dark" : "light"}</h1>
         <h1>Block Number: {blockNumber}</h1>
         <Blocks />
         <InputAddress />
         <Transactions />
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 }
 
