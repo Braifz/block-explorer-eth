@@ -1,4 +1,4 @@
-# Ethereum Block Explorer
+# Ethereum Block Explorer (In progress)
 
 Blockexplorers give us the ability to view lots of different information about the blockchain including data about:
   * the blockchain network itself
