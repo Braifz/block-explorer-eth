@@ -30,7 +30,11 @@ function App() {
 
   return (
     <Layout>
-      <div className={`App ${state.darkMode ? "dark-theme" : "light-theme"}`}>
+      <div
+        className={`App ${
+          state.darkMode ? "bg-black text-white" : "bg-white text-black"
+        }`}
+      >
         <h1>Current theme: {state.darkMode ? "dark" : "light"}</h1>
         <h1>Block Number: {blockNumber}</h1>
         <Blocks />

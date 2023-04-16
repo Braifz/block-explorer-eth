@@ -29,12 +29,12 @@ const Transactions = () => {
     );
 
   return (
-    <div className="flex align-center justify-center flex-col">
-      <h1 className="text-3xl font-bold underline	">Transactions</h1>
-      <table className="table-auto overflow-x-auto  border-collapse border border-slate-500 m-5">
+    <div className="flex align-center justify-center flex-col ">
+      <h1 className="text-3xl text-center font-bold underline	">Transactions</h1>
+      <table className="table-auto overflow-auto border-collapse border border-slate-500 m-5 shadow-lg shadow-black">
         <tr>
-          <th className="border border-slate-600">Block Number</th>
-          <th className="border border-slate-600">block Hash</th>
+          {/* <th className="border border-slate-600">Block Number</th>
+          <th className="border border-slate-600">block Hash</th> */}
           <th className="border border-slate-600">From</th>
           <th className="border border-slate-600">To</th>
           <th className="border border-slate-600">Value</th>
@@ -42,10 +42,10 @@ const Transactions = () => {
         {transactions.length >= 1
           ? transactions.map((tx) => (
               <tr key={tx.hash}>
-                <td className="border border-slate-600 p-2">
+                {/* <td className="border border-slate-600 p-2">
                   {tx.blockNumber}
-                </td>
-                <td className="border border-slate-600 p-2">{tx.blockHash}</td>
+                </td> */}
+                {/* <td className="border border-slate-600 p-2">{tx.blockHash}</td> */}
                 <td className="border border-slate-600 p-2">{tx.from}</td>
                 <td className="border border-slate-600 p-2">{tx.to}</td>
                 <td className="border border-slate-600 p-2">

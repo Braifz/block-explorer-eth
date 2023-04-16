@@ -9,8 +9,14 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <h1 className="text-4xl italic font-bold m-4">Block Explorer ETH</h1>
+    <header
+      className={`${
+        state.darkMode ? "bg-black text-white" : "bg-white text-black"
+      }`}
+    >
+      <h1 className="text-4xl text-center underline italic font-bold m-4">
+        Block Explorer ETH
+      </h1>
       <button onClick={onClick}>Toggle theme</button>
     </header>
   );
